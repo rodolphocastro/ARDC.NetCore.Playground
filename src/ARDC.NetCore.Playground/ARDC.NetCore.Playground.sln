@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARDC.NetCore.Playground.Persistance.Mock", "ARDC.NetCore.Playground.Persistance.Mock\ARDC.NetCore.Playground.Persistance.Mock.csproj", "{A5963B19-69FA-4890-AC53-AF8933E3B673}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1AF59A00-58B2-4048-B6AA-E9E28CD97C3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARDC.NetCore.Playground.Persistance.Mock.Tests", "ARDC.NetCore.Playground.Persistance.Mock.Tests\ARDC.NetCore.Playground.Persistance.Mock.Tests.csproj", "{E19ACE34-D391-4BE4-8856-CB8AF1DCE839}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,12 +33,18 @@ Global
 		{A5963B19-69FA-4890-AC53-AF8933E3B673}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5963B19-69FA-4890-AC53-AF8933E3B673}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5963B19-69FA-4890-AC53-AF8933E3B673}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E19ACE34-D391-4BE4-8856-CB8AF1DCE839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E19ACE34-D391-4BE4-8856-CB8AF1DCE839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E19ACE34-D391-4BE4-8856-CB8AF1DCE839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E19ACE34-D391-4BE4-8856-CB8AF1DCE839}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A5963B19-69FA-4890-AC53-AF8933E3B673} = {E8699914-D1B0-4230-A03A-1EFDE5449DF8}
+		{1AF59A00-58B2-4048-B6AA-E9E28CD97C3F} = {E8699914-D1B0-4230-A03A-1EFDE5449DF8}
+		{E19ACE34-D391-4BE4-8856-CB8AF1DCE839} = {1AF59A00-58B2-4048-B6AA-E9E28CD97C3F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6AB0C9E3-3D56-4B89-9092-4423C9596765}
