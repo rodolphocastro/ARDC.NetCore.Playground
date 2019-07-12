@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace ARDC.NetCore.Playground.Persistance.Mock.Generators
 {
+    /// <summary>
+    /// Mock data generator for games.
+    /// </summary>
     public class GameGenerator : IModelGenerator<Game>
     {
         private readonly Random _random;
