@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace ARDC.NetCore.Playground.Domain.Repository
 {
+    /// <summary>
+    /// Describe methods for accessing Reviews in the System.
+    /// </summary>
     public interface IReviewRepository
     {
         /// <summary>

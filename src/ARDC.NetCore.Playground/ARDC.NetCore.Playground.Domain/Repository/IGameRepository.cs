@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace ARDC.NetCore.Playground.Domain.Repository
 {
     /// <summary>
-    /// Methods for accessing Games in the System.
+    /// Describe methods for accessing Games in the System.
     /// </summary>
     public interface IGameRepository
     {
