@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARDC.NetCore.Playground.API", "ARDC.NetCore.Playground.API\ARDC.NetCore.Playground.API.csproj", "{19AF0BCB-DDD3-4CAA-AB96-4ABC41F6B126}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARDC.NetCore.Playground.Domain", "ARDC.NetCore.Playground.Domain\ARDC.NetCore.Playground.Domain.csproj", "{B0C79C9D-2ADD-4B17-B882-83C7420252FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{19AF0BCB-DDD3-4CAA-AB96-4ABC41F6B126}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19AF0BCB-DDD3-4CAA-AB96-4ABC41F6B126}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19AF0BCB-DDD3-4CAA-AB96-4ABC41F6B126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0C79C9D-2ADD-4B17-B882-83C7420252FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0C79C9D-2ADD-4B17-B882-83C7420252FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0C79C9D-2ADD-4B17-B882-83C7420252FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0C79C9D-2ADD-4B17-B882-83C7420252FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
