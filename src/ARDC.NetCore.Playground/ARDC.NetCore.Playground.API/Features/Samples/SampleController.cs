@@ -4,6 +4,9 @@ using System;
 
 namespace ARDC.NetCore.Playground.API.Features.Samples
 {
+    /// <summary>
+    /// Controller for Sample related actions.
+    /// </summary>
     [Route("samples")]
     public class SampleController : ControllerBase
     {
