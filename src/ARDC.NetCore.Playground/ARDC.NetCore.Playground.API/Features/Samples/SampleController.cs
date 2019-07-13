@@ -5,7 +5,7 @@ using System;
 namespace ARDC.NetCore.Playground.API.Features.Samples
 {
     [Route("samples")]
-    public class SampleController : Controller
+    public class SampleController : ControllerBase
     {
         public SampleController()
         {
