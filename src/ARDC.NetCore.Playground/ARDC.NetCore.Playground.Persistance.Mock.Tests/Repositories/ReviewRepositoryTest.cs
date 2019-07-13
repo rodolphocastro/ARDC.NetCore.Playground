@@ -57,7 +57,7 @@ namespace ARDC.NetCore.Playground.Persistance.Mock.Tests.Repositories
             var review = _reviewGenerator.Get();
 
             Action act = () => _reviewRepo.Delete(review);
-            act.Should().NotThrow<Exception>();
+            act.Should().NotThrow<Exception>("it should do nothing");
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace ARDC.NetCore.Playground.Persistance.Mock.Tests.Repositories
             var review = _reviewGenerator.Get();
 
             Action act = () => _reviewRepo.Delete(review.Id);
-            act.Should().NotThrow<Exception>();
+            act.Should().NotThrow<Exception>("it should do nothing");
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace ARDC.NetCore.Playground.Persistance.Mock.Tests.Repositories
             var review = _reviewGenerator.Get();
 
             Func<Task> act = async () => await _reviewRepo.DeleteAsync(review);
-            act.Should().NotThrow<Exception>();
+            act.Should().NotThrow<Exception>("it should do nothing");
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace ARDC.NetCore.Playground.Persistance.Mock.Tests.Repositories
             var review = _reviewGenerator.Get();
 
             Func<Task> act = async () => await _reviewRepo.DeleteAsync(review.Id);
-            act.Should().NotThrow<Exception>();
+            act.Should().NotThrow<Exception>("it should do nothing");
         }
 
         /// <summary>
@@ -127,8 +127,8 @@ namespace ARDC.NetCore.Playground.Persistance.Mock.Tests.Repositories
             var reviews = _reviewRepo.Get();
 
             reviews.Should()
-                .NotBeNull().And
-                .NotBeEmpty();
+                .NotBeNull("it should be created by the Repository").And
+                .NotBeEmpty("it should have at least a single element");
         }
 
         /// <summary>
@@ -140,8 +140,8 @@ namespace ARDC.NetCore.Playground.Persistance.Mock.Tests.Repositories
             var reviews = await _reviewRepo.GetAsync();
 
             reviews.Should()
-                .NotBeNull().And
-                .NotBeEmpty();
+                .NotBeNull("it should be created by the Repository").And
+                .NotBeEmpty("it should have at least a single element");
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace ARDC.NetCore.Playground.Persistance.Mock.Tests.Repositories
             review.AuthorName = "Pudim!";
 
             Action act = () => _reviewRepo.Update(review.Id, review);
-            act.Should().NotThrow<Exception>();
+            act.Should().NotThrow<Exception>("it should do nothing");
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace ARDC.NetCore.Playground.Persistance.Mock.Tests.Repositories
             review.AuthorName = "Pudim!";
 
             Func<Task> act = () => _reviewRepo.UpdateAsync(review.Id, review);
-            act.Should().NotThrow<Exception>();
+            act.Should().NotThrow<Exception>("it should do nothing");
         }
     }
 }
