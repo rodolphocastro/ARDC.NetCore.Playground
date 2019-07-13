@@ -1,4 +1,5 @@
-﻿using ARDC.NetCore.Playground.Domain.Models;
+﻿using ARDC.NetCore.Playground.Domain;
+using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
 using ARDC.NetCore.Playground.Persistance.Mock.Generators;
 using ARDC.NetCore.Playground.Persistance.Mock.Repositories;
@@ -26,6 +27,7 @@ namespace ARDC.NetCore.Playground.Persistance.Mock.Registration
         {
             services.AddSingleton<IGameRepository, GameRepository>();
             services.AddSingleton<IReviewRepository, ReviewRepository>();
+            services.AddSingleton<IUnitOfWork, UnitOfWork>();
         }
     }
 }

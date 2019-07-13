@@ -1,3 +1,4 @@
+using ARDC.NetCore.Playground.Domain;
 using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
 using ARDC.NetCore.Playground.Persistance.Mock.Generators;
@@ -76,6 +77,20 @@ namespace ARDC.NetCore.Playground.Persistance.Mock.Tests
                 .NotBeNull("should have been initialized by the provider").And
                 .BeOfType<ReviewRepository>("registered as such by the AddUnitOfWork extension").And
                 .BeAssignableTo<IReviewRepository>("implements the IReviewRepository interface");
+        }
+
+        /// <summary>
+        /// The service provider should be able to resolve a Unit Of Work.
+        /// </summary>
+        [Fact(DisplayName = "Resolve Unit Of Work")]
+        public void ResolveUnitOfWork()
+        {
+            var uow = Provider.GetService<IUnitOfWork>();
+
+            uow.Should()
+                .NotBeNull("should have been initialized by the provider").And
+                .BeOfType<UnitOfWork>("registered as such by the AddUnitOfWork extension").And
+                .BeAssignableTo<IUnitOfWork>("implements the IUnitOfWork interface");
         }
     }
 }
