@@ -25,6 +25,7 @@ namespace ARDC.NetCore.Playground.Persistance.Mock.Registration
         public static void AddUnitOfWork(this IServiceCollection services)
         {
             services.AddSingleton<IGameRepository, GameRepository>();
+            services.AddSingleton<IReviewRepository, ReviewRepository>();
         }
     }
 }
