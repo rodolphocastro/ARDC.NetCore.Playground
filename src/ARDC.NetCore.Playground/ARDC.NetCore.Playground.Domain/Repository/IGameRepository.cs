@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ARDC.NetCore.Playground.Domain.Repository
+namespace ARDC.NetCore.Playground.Domain.Repositories
 {
     /// <summary>
     /// Describe methods for accessing Games in the System.

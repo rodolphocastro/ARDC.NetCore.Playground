@@ -1,4 +1,4 @@
-﻿using ARDC.NetCore.Playground.Domain.Repository;
+﻿using ARDC.NetCore.Playground.Domain.Repositories;
 using System.Threading;
 using System.Threading.Tasks;
 
