@@ -16,6 +16,8 @@ namespace ARDC.NetCore.Playground.API
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks();
+
             services.AddMvc();
 
             services.AddSwaggerGen(c =>
@@ -33,6 +35,8 @@ namespace ARDC.NetCore.Playground.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseHealthChecks("/health");
+
             app.UseSwagger();
 
             if (env.IsDevelopment())
