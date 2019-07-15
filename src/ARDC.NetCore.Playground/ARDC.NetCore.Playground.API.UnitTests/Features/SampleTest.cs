@@ -63,5 +63,23 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
             objectResult.Value.As<DateTime>().Should()
                 .BeCloseTo(DateTime.Now, 1000, "the Now returned by the Controller could be a few ms in the past");
         }
+
+        /// <summary>
+        /// It should be possible to ping-pong the server.
+        /// </summary>
+        [Fact(DisplayName = "POST Ping")]
+        public void PingPong()
+        {
+            var result = _controller.Pong();
+
+            result.Should()
+                .NotBeNull("a result is always expected").And
+                .BeAssignableTo<IActionResult>("it should implement IActionResult").And
+                .BeOfType<OkObjectResult>("it should be an OK result").Which
+                .Value.Should()
+                    .NotBeNull("an object is always expected").And
+                    .BeOfType<string>("it should be a simple string").And
+                    .Be("Pong!");
+        }
     }
 }

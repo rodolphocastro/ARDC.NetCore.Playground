@@ -28,5 +28,12 @@ namespace ARDC.NetCore.Playground.API.Features.Samples
         [HttpGet("now", Name = "What time is it")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DateTime))]
         public IActionResult Now() => Ok(DateTime.Now);
+
+        /// <summary>
+        /// Ping pong.
+        /// </summary>
+        [HttpPost("ping")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+        public IActionResult Pong() => Ok("Pong!");
     }
 }
