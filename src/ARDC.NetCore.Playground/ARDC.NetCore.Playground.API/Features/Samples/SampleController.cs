@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -32,6 +33,7 @@ namespace ARDC.NetCore.Playground.API.Features.Samples
         /// <summary>
         /// Ping pong.
         /// </summary>
+        [Authorize]
         [HttpPost("ping")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
         public IActionResult Pong() => Ok("Pong!");
