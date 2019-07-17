@@ -95,6 +95,8 @@ namespace ARDC.NetCore.Playground.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
             app.UseAuthentication();
 
             app.UseMvc();
