@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using ARDC.NetCore.Playground.API.Settings;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -38,6 +39,8 @@ namespace ARDC.NetCore.Playground.API
             services.AddHealthChecks();
 
             services.AddMvc();
+
+            var githubOptions = _configuration.GetSection(nameof(GitHubSettings)).Get<GitHubSettings>();
 
             services
                 .AddAuthentication(opt =>
