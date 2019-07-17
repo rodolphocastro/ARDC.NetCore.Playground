@@ -50,10 +50,10 @@ namespace ARDC.NetCore.Playground.API
             services
             .AddAuthentication(opt =>
             {
-                opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = "GitHub";
             })
-            .AddCookie("Bearer")
+            .AddCookie()
             .AddGitHub("GitHub", opt =>
             {
                 opt.ClientId = GitHubSettings.ClientId;                             
@@ -86,30 +86,32 @@ namespace ARDC.NetCore.Playground.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseSwagger();
 
-            app.UseHsts();
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
 
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
-            app.UseAuthentication();
-
-            app.UseMvc();
-
+            app.UseHttpsRedirection();
+            app.UseSwagger();
             app.UseSwaggerUI(opt =>
             {
                 opt.DisplayRequestDuration();
-                opt.OAuthAppName("dotNet Core Playground");
-                opt.OAuthClientId(Guid.NewGuid().ToString());
-                opt.OAuth2RedirectUrl("https://localhost:5001/signin-github");
                 opt.RoutePrefix = string.Empty;
                 opt.SwaggerEndpoint("swagger/v1/swagger.json", "Playground API V1");
-            });           
+                opt.OAuth2RedirectUrl("https://localhost:5001/oauth2-redirect.html");       // TODO: Abrir uma issue no GitHub sobre ser obrigado a utilizar, fixa, este path do Swagger UI.
+                opt.OAuthClientId(GitHubSettings.ClientId);
+                opt.OAuthAppName("dotNet Core Playground");
+            });
+            app.UseAuthentication();
+
+            app.UseMvc();
         }
     }
 }
