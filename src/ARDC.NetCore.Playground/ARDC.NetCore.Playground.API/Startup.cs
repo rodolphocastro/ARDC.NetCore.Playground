@@ -29,8 +29,10 @@ namespace ARDC.NetCore.Playground.API
         public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
-            _environment = environment ?? throw new ArgumentNullException(nameof(environment));
+            _environment = environment ?? throw new ArgumentNullException(nameof(environment));            
         }
+
+        public GitHubSettings GitHubSettings { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -40,26 +42,30 @@ namespace ARDC.NetCore.Playground.API
 
             services.AddMvc();
 
-            var githubOptions = _configuration.GetSection(nameof(GitHubSettings)).Get<GitHubSettings>();
+            GitHubSettings = _configuration.GetSection(nameof(GitHubSettings)).Get<GitHubSettings>();   // TODO: Criar uma extension para facilitar a vida
+
+            if (GitHubSettings == null)
+                throw new ArgumentNullException(nameof(GitHubSettings), "GitHub OAuth settings were not found. Did you forget to edit your appSettings.json?");            
 
             services
-                .AddAuthentication(opt =>
-                {
-                    opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                    opt.DefaultChallengeScheme = "GitHub";
-                })
-                .AddCookie("Bearer")
-                .AddGitHub("GitHub", opt =>
-                {
-                    opt.ClientId = @"my client id";                             // TODO: Adicionar aos Secrets
-                    opt.ClientSecret = @"my client secret";     // TODO: Adicionar aos Secrets
-                    opt.CallbackPath = new PathString("/signin-github");
+            .AddAuthentication(opt =>
+            {
+                opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = "GitHub";
+            })
+            .AddCookie("Bearer")
+            .AddGitHub("GitHub", opt =>
+            {
+                opt.ClientId = GitHubSettings.ClientId;                             
+                opt.ClientSecret = GitHubSettings.ClientSecret;     
+                opt.CallbackPath = new PathString(GitHubSettings.CallbackPath);
 
-                });
+            });
+            
 
             services.AddSwaggerGen(c =>
             {
-                c.AddSecurityDefinition("oauth2", new OAuth2Scheme
+                c.AddSecurityDefinition("GitHub", new OAuth2Scheme
                 {
                     Type = "oauth2",
                     Flow = "implicit",
@@ -97,7 +103,7 @@ namespace ARDC.NetCore.Playground.API
             {
                 opt.DisplayRequestDuration();
                 opt.OAuthAppName("dotNet Core Playground");
-                opt.OAuthClientId("my client id");          // TODO: Obter dos Secrets
+                opt.OAuthClientId(Guid.NewGuid().ToString());
                 opt.OAuth2RedirectUrl("https://localhost:5001/signin-github");
                 opt.RoutePrefix = string.Empty;
                 opt.SwaggerEndpoint("swagger/v1/swagger.json", "Playground API V1");
