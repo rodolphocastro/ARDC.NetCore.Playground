@@ -59,7 +59,7 @@ namespace ARDC.NetCore.Playground.API
                 opt.ClientId = GitHubSettings.ClientId;                             
                 opt.ClientSecret = GitHubSettings.ClientSecret;     
                 opt.CallbackPath = new PathString(GitHubSettings.CallbackPath);
-
+                opt.SaveTokens = true;
             });
 
             // Armazenando as configurações do GitHub para uso Futuro
@@ -102,12 +102,13 @@ namespace ARDC.NetCore.Playground.API
 
             app.UseHttpsRedirection();
             app.UseSwagger();
+            // TODO: Entender por qual motivo o Authorize do Swagger não funciona.
             app.UseSwaggerUI(opt =>
             {
                 opt.DisplayRequestDuration();
                 opt.RoutePrefix = string.Empty;
                 opt.SwaggerEndpoint("swagger/v1/swagger.json", "Playground API V1");
-                opt.OAuth2RedirectUrl("https://localhost:5001/oauth2-redirect.html");       // TODO: Abrir uma issue no GitHub sobre ser obrigado a utilizar, fixa, este path do Swagger UI.
+                opt.OAuth2RedirectUrl("https://localhost:5001/auth/callback");
                 opt.OAuthClientId(GitHubSettings.ClientId);
                 opt.OAuthAppName("dotNet Core Playground");
             });
