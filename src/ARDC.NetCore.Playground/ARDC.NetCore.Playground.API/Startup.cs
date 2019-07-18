@@ -45,8 +45,8 @@ namespace ARDC.NetCore.Playground.API
             GitHubSettings = _configuration.GetSection(nameof(GitHubSettings)).Get<GitHubSettings>();   // TODO: Criar uma extension para facilitar a vida
 
             if (GitHubSettings == null)
-                throw new ArgumentNullException(nameof(GitHubSettings), "GitHub OAuth settings were not found. Did you forget to edit your appSettings.json?");            
-
+                throw new ArgumentNullException(nameof(GitHubSettings), "GitHub OAuth settings were not found. Did you forget to edit your appSettings.json?");
+            
             services
             .AddAuthentication(opt =>
             {
@@ -61,7 +61,9 @@ namespace ARDC.NetCore.Playground.API
                 opt.CallbackPath = new PathString(GitHubSettings.CallbackPath);
 
             });
-            
+
+            // Armazenando as configurações do GitHub para uso Futuro
+            services.Configure<GitHubSettings>(_configuration.GetSection(nameof(GitHubSettings)));
 
             services.AddSwaggerGen(c =>
             {
