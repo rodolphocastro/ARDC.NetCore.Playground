@@ -37,5 +37,9 @@ namespace ARDC.NetCore.Playground.API.Features.Samples
         [HttpPost("ping")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
         public IActionResult Pong() => Ok("Pong!");
+
+        [Authorize]
+        [HttpGet("whoami")]
+        public IActionResult WhoAmI() => Ok(HttpContext.User.Identity.Name);
     }
 }
