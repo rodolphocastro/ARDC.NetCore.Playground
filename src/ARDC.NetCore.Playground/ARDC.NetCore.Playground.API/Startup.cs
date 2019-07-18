@@ -70,7 +70,7 @@ namespace ARDC.NetCore.Playground.API
                 c.AddSecurityDefinition("GitHub", new OAuth2Scheme
                 {
                     Type = "oauth2",
-                    Flow = "implicit",
+                    Flow = "accessCode",
                     AuthorizationUrl = "https://github.com/login/oauth/authorize",
                     TokenUrl = "https://github.com/login/oauth/access_token"
                 });
@@ -110,6 +110,7 @@ namespace ARDC.NetCore.Playground.API
                 opt.SwaggerEndpoint("swagger/v1/swagger.json", "Playground API V1");
                 opt.OAuth2RedirectUrl("https://localhost:5001/auth/callback");
                 opt.OAuthClientId(GitHubSettings.ClientId);
+                opt.OAuthClientSecret(GitHubSettings.ClientSecret);
                 opt.OAuthAppName("dotNet Core Playground");
             });
             app.UseAuthentication();
