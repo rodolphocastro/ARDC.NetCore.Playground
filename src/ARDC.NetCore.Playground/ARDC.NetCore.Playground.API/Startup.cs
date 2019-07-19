@@ -50,7 +50,8 @@ namespace ARDC.NetCore.Playground.API
             services
             .AddAuthentication(opt =>
             {
-                opt.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                opt.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                opt.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = "GitHub";
             })
             .AddCookie()
@@ -60,6 +61,29 @@ namespace ARDC.NetCore.Playground.API
                 opt.ClientSecret = GitHubSettings.ClientSecret;     
                 opt.CallbackPath = new PathString(GitHubSettings.CallbackPath);
                 opt.SaveTokens = true;
+
+                opt.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
+                opt.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
+                opt.ClaimActions.MapJsonKey("urn:github:login", "login");
+                opt.ClaimActions.MapJsonKey("urn:github:url", "html_url");
+                opt.ClaimActions.MapJsonKey("urn:github:avatar", "avatar_url");
+
+                opt.Events = new OAuthEvents
+                {
+                    OnCreatingTicket = async context =>
+                    {
+                        var request = new HttpRequestMessage(HttpMethod.Get, context.Options.UserInformationEndpoint);
+                        request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", context.AccessToken);
+
+                        var response = await context.Backchannel.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, context.HttpContext.RequestAborted);
+                        response.EnsureSuccessStatusCode();
+
+                        var user = JObject.Parse(await response.Content.ReadAsStringAsync());
+
+                        context.RunClaimActions(user);
+                    }
+                };
             });
 
             // Armazenando as configurações do GitHub para uso Futuro
