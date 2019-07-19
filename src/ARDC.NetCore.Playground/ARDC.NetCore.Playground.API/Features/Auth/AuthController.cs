@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace ARDC.NetCore.Playground.API.Features.Auth
 {
+    // TODO: Após correção do Swagger Authorize ver para remover este endpoint.
     [Route("auth")]
     public class AuthController : ControllerBase
     {
