@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using ARDC.NetCore.Playground.API.Filters;
 using ARDC.NetCore.Playground.API.Settings;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -91,14 +92,6 @@ namespace ARDC.NetCore.Playground.API
 
             services.AddSwaggerGen(c =>
             {
-                c.AddSecurityDefinition("GitHub", new OAuth2Scheme
-                {
-                    Type = "oauth2",
-                    Flow = "accessCode",
-                    AuthorizationUrl = "https://github.com/login/oauth/authorize",
-                    TokenUrl = "https://github.com/login/oauth/access_token"
-                });
-                
                 c.SwaggerDoc("v1", new Info
                 {
                     Version = "v1",
@@ -106,13 +99,22 @@ namespace ARDC.NetCore.Playground.API
                     Description = "API para testes com .NET Core 2.2",
                     Contact = new Contact { Name = "Rodolpho Alves", Url = @"https://github.com/rodolphocastro", Email = "not.my.email@gmail.com" }   // TODO: Algum dia colocar um e-mail válido :shrug:
                 });
+
+                c.AddSecurityDefinition("GitHub", new OAuth2Scheme
+                {
+                    Type = "oauth2",
+                    Flow = "accessCode",
+                    AuthorizationUrl = "https://github.com/login/oauth/authorize",
+                    TokenUrl = "https://github.com/login/oauth/access_token"
+                });
+
+                c.OperationFilter<SecurityRequirementsOperationFilter>();
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             if (env.IsDevelopment())
@@ -139,6 +141,7 @@ namespace ARDC.NetCore.Playground.API
             });
             app.UseAuthentication();
 
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }
