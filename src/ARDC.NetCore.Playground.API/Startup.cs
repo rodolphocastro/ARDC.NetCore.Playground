@@ -41,6 +41,10 @@ namespace ARDC.NetCore.Playground.API
         {
             services.AddHealthChecks();
 
+            // TODO: Permitir que a implementação seja escolhida por Settings
+            services.AddGenerators();
+            services.AddUnitOfWork();
+
             services.AddMvc();
 
             GitHubSettings = _configuration.GetSection(nameof(GitHubSettings)).Get<GitHubSettings>();   // TODO: Criar uma extension para facilitar a vida
