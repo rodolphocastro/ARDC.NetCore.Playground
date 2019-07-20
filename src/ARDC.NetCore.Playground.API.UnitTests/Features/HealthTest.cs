@@ -2,7 +2,6 @@
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Moq;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -13,7 +12,6 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
 {
     public class HealthTest
     {
-        private readonly Mock<FakeHealthCheckService> _mockHealthService;
         private readonly HealthController _controller;
 
         public HealthTest()
