@@ -1,6 +1,9 @@
 language: csharp
+
+dist: bionic
+
 mono: none
-dotnet: 2.1.502
+dotnet: 2.2.301
 script:
   - dotnet restore .\src\ARDC.NetCore.Playground.sln
   - dotnet build -c Release .\src\ARDC.NetCore.Playground.sln
