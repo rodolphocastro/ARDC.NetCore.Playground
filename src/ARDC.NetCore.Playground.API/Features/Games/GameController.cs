@@ -48,7 +48,7 @@ namespace ARDC.NetCore.Playground.API.Features.Games
         public IActionResult Create([FromBody] Game game)
         {
             if (!string.IsNullOrWhiteSpace(game.Id))
-                return BadRequest();    // TODO: Criar um teste para Games criados de maneira inválida
+                return BadRequest();
 
             var createdGame = _gameRepository.Create(game);
             return Created("", createdGame);
