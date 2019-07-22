@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ARDC.NetCore.Playground.Domain\ARDC.NetCore.Playground.Domain.csproj" />
+    <ProjectReference Include="..\ARDC.NetCore.Playground.Persistance.Mock\ARDC.NetCore.Playground.Persistance.Mock.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,4 @@
-﻿using ARDC.NetCore.Playground.Persistance.Mock.Registration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace ARDC.NetCore.Playground.Persistance.Mock.Tests
 {

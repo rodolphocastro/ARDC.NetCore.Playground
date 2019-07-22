@@ -1,11 +1,11 @@
 ﻿using ARDC.NetCore.Playground.Domain;
 using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
+using ARDC.NetCore.Playground.Persistance.Mock;
 using ARDC.NetCore.Playground.Persistance.Mock.Generators;
 using ARDC.NetCore.Playground.Persistance.Mock.Repositories;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace ARDC.NetCore.Playground.Persistance.Mock.Registration
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static class ServicesExtensions
     {
