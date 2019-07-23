@@ -23,8 +23,9 @@ namespace Microsoft.Extensions.DependencyInjection
         /// Add the Unit of Work and its Repositories to the Service Collection.
         /// </summary>
         /// <param name="services"></param>
-        public static void AddUnitOfWork(this IServiceCollection services)
+        public static void AddMockPersistence(this IServiceCollection services)
         {
+            // TODO: Garantir que os generators estejam cadastrados
             services.AddSingleton<IGameRepository, GameRepository>();
             services.AddSingleton<IReviewRepository, ReviewRepository>();
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
