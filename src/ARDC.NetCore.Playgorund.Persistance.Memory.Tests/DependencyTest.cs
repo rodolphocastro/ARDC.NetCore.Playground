@@ -1,3 +1,5 @@
+using ARDC.NetCore.Playground.Domain.Repositories;
+using ARDC.NetCore.Playground.Persistance.Memory.Repositories;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +34,20 @@ namespace ARDC.NetCore.Playground.Persistance.Memory.Tests
             dbContext.Games.Should().NotBeNull("it should be created by EntityFramework");
 
             dbContext.Reviews.Should().NotBeNull("it should be created by EntityFramework");
+        }
+
+        /// <summary>
+        /// It should be possible to resolve the Game Repository.
+        /// </summary>
+        [Fact(DisplayName = "Resolve Game Repository")]
+        public void ResolveGameRepository()
+        {
+            var gameRepo = Provider.GetService<IGameRepository>();
+
+            gameRepo.Should()
+                .NotBeNull("it should be created by the provider").And
+                .BeAssignableTo<IGameRepository>("it should be an implementation of IGameRepository").And
+                .BeOfType<GameRepository>("it should be an InMemory Game Repository");
         }
     }
 }
