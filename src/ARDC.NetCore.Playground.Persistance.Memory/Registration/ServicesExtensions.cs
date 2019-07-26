@@ -15,7 +15,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 opt.UseInMemoryDatabase("PlaygroundDb");
             });
             services.AddScoped<IGameRepository, GameRepository>();
-            // TODO: Registrar repository de Reviews
+            services.AddScoped<IReviewRepository, ReviewRepository>();
             // TODO: Registrar UoW
         }
     }
