@@ -1,4 +1,5 @@
-﻿using ARDC.NetCore.Playground.Domain.Models;
+﻿using ARDC.NetCore.Playground.Domain;
+using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
 using ARDC.NetCore.Playground.Persistance.Mock.Generators;
 using FluentAssertions;
@@ -17,7 +18,7 @@ namespace ARDC.NetCore.Playground.Persistance.Mock.Tests.Repositories
         public ReviewRepositoryTest(ServiceProviderFixture fixture)
         {
             _reviewGenerator = fixture.Provider.GetService<IModelGenerator<Review>>();
-            _reviewRepo = fixture.Provider.GetService<IReviewRepository>();
+            _reviewRepo = fixture.Provider.GetService<IUnitOfWork>().ReviewRepository;
         }
 
         /// <summary>

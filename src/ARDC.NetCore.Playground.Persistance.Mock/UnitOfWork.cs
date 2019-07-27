@@ -1,5 +1,8 @@
 ﻿using ARDC.NetCore.Playground.Domain;
+using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
+using ARDC.NetCore.Playground.Persistance.Mock.Generators;
+using ARDC.NetCore.Playground.Persistance.Mock.Repositories;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,18 +11,36 @@ namespace ARDC.NetCore.Playground.Persistance.Mock
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly IGameRepository _gameRepository;
-        private readonly IReviewRepository _reviewRepository;
+        private IGameRepository _gameRepository;
+        private IReviewRepository _reviewRepository;
+        private readonly IModelGenerator<Game> _gameGenerator;
+        private readonly IModelGenerator<Review> _reviewGenerator;
 
-        public UnitOfWork(IGameRepository gameRepository, IReviewRepository reviewRepository)
+        public UnitOfWork(IModelGenerator<Game> gameGenerator, IModelGenerator<Review> reviewGenerator)
         {
-            _gameRepository = gameRepository ?? throw new ArgumentNullException(nameof(gameRepository));
-            _reviewRepository = reviewRepository ?? throw new ArgumentNullException(nameof(reviewRepository));
+            _gameGenerator = gameGenerator ?? throw new ArgumentNullException(nameof(gameGenerator));
+            _reviewGenerator = reviewGenerator ?? throw new ArgumentNullException(nameof(reviewGenerator));
         }
 
-        public IGameRepository GameRepository => _gameRepository;
+        public IGameRepository GameRepository
+        {
+            get
+            {
+                if (_gameRepository == null)
+                    _gameRepository = new GameRepository(_gameGenerator);
+                return _gameRepository;
+            }
+        }
 
-        public IReviewRepository ReviewRepository => _reviewRepository;
+        public IReviewRepository ReviewRepository
+        {
+            get
+            {
+                if (_reviewRepository == null)
+                    _reviewRepository = new ReviewRepository(_reviewGenerator);
+                return _reviewRepository;
+            }
+        }
 
         public void SaveChanges() { }
 

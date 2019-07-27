@@ -17,7 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.Per
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6C78AC9F-F03A-478E-B1AC-5C1E3B2B0E89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARDC.NetCore.Playground.API.UnitTests", "ARDC.NetCore.Playground.API.UnitTests\ARDC.NetCore.Playground.API.UnitTests.csproj", "{0B460318-BF9A-46CB-95BC-2EFCFED65E5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.API.UnitTests", "ARDC.NetCore.Playground.API.UnitTests\ARDC.NetCore.Playground.API.UnitTests.csproj", "{0B460318-BF9A-46CB-95BC-2EFCFED65E5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARDC.NetCore.Playground.Persistance.Memory", "ARDC.NetCore.Playground.Persistance.Memory\ARDC.NetCore.Playground.Persistance.Memory.csproj", "{6BE002BF-E8AF-4D76-8899-290CE6EA69A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARDC.NetCore.Playground.Persistance.Memory.Tests", "ARDC.NetCore.Playgorund.Persistance.Memory.Tests\ARDC.NetCore.Playground.Persistance.Memory.Tests.csproj", "{DE74D1F5-E23A-454C-9254-AE5290AFE1D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{0B460318-BF9A-46CB-95BC-2EFCFED65E5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B460318-BF9A-46CB-95BC-2EFCFED65E5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B460318-BF9A-46CB-95BC-2EFCFED65E5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BE002BF-E8AF-4D76-8899-290CE6EA69A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BE002BF-E8AF-4D76-8899-290CE6EA69A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BE002BF-E8AF-4D76-8899-290CE6EA69A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BE002BF-E8AF-4D76-8899-290CE6EA69A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE74D1F5-E23A-454C-9254-AE5290AFE1D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE74D1F5-E23A-454C-9254-AE5290AFE1D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE74D1F5-E23A-454C-9254-AE5290AFE1D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE74D1F5-E23A-454C-9254-AE5290AFE1D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +66,8 @@ Global
 		{1AF59A00-58B2-4048-B6AA-E9E28CD97C3F} = {E8699914-D1B0-4230-A03A-1EFDE5449DF8}
 		{E19ACE34-D391-4BE4-8856-CB8AF1DCE839} = {1AF59A00-58B2-4048-B6AA-E9E28CD97C3F}
 		{0B460318-BF9A-46CB-95BC-2EFCFED65E5D} = {6C78AC9F-F03A-478E-B1AC-5C1E3B2B0E89}
+		{6BE002BF-E8AF-4D76-8899-290CE6EA69A8} = {E8699914-D1B0-4230-A03A-1EFDE5449DF8}
+		{DE74D1F5-E23A-454C-9254-AE5290AFE1D3} = {1AF59A00-58B2-4048-B6AA-E9E28CD97C3F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6AB0C9E3-3D56-4B89-9092-4423C9596765}

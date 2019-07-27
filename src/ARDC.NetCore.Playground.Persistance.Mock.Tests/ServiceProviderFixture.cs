@@ -10,7 +10,7 @@ namespace ARDC.NetCore.Playground.Persistance.Mock.Tests
         {
             IServiceCollection services = new ServiceCollection();
             services.AddGenerators();
-            services.AddUnitOfWork();
+            services.AddMockPersistence();
             _provider = services.BuildServiceProvider();
         }
 

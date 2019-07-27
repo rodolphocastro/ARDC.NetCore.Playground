@@ -43,7 +43,7 @@ namespace ARDC.NetCore.Playground.API
 
             // TODO: Permitir que a implementação seja escolhida por Settings
             services.AddGenerators();
-            services.AddUnitOfWork();
+            services.AddMemoryPersistence();
 
             services.AddMvc();
 

@@ -1,4 +1,5 @@
 ﻿using ARDC.NetCore.Playground.API.Features.Reviews;
+using ARDC.NetCore.Playground.Domain;
 using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
 using ARDC.NetCore.Playground.Persistance.Mock.Generators;
@@ -15,13 +16,16 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
     {
         private readonly IModelGenerator<Review> _reviewGenerator;
         private readonly Mock<IReviewRepository> _fakeRepository;
+        private readonly Mock<IUnitOfWork> _fakeUnitOfWork;
         private readonly ReviewController _controller;
 
         public ReviewTest()
         {
             _reviewGenerator = new ReviewGenerator(new GameGenerator());
             _fakeRepository = new Mock<IReviewRepository>();
-            _controller = new ReviewController(_fakeRepository.Object);
+            _fakeUnitOfWork = new Mock<IUnitOfWork>();
+            _fakeUnitOfWork.Setup(m => m.ReviewRepository).Returns(_fakeRepository.Object);
+            _controller = new ReviewController(_fakeUnitOfWork.Object);
         }
 
         /// <summary>

@@ -57,7 +57,7 @@ namespace ARDC.NetCore.Playground.Persistance.Mock.Tests
         [Fact(DisplayName = "Resolve Game Repository")]
         public void ResolveGameRepository()
         {
-            var gameRepo = Provider.GetService<IGameRepository>();
+            var gameRepo = Provider.GetService<IUnitOfWork>().GameRepository;
 
             gameRepo.Should()
                 .NotBeNull("should have been initialized by the provider").And
@@ -71,7 +71,7 @@ namespace ARDC.NetCore.Playground.Persistance.Mock.Tests
         [Fact(DisplayName = "Resolve Review Repository")]
         public void ResolveReviewRepository()
         {
-            var reviewRepo = Provider.GetService<IReviewRepository>();
+            var reviewRepo = Provider.GetService<IUnitOfWork>().ReviewRepository;
 
             reviewRepo.Should()
                 .NotBeNull("should have been initialized by the provider").And
