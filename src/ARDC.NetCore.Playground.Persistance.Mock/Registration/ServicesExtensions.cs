@@ -26,9 +26,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static void AddMockPersistence(this IServiceCollection services)
         {
             // TODO: Garantir que os generators estejam cadastrados
-            services.AddSingleton<IGameRepository, GameRepository>();
-            services.AddSingleton<IReviewRepository, ReviewRepository>();
-            services.AddSingleton<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }
 }
