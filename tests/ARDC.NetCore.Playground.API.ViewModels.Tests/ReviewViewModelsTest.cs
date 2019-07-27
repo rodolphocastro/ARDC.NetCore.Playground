@@ -1,5 +1,5 @@
-﻿using ARDC.NetCore.Playground.API.ViewModels.Game;
-using ARDC.NetCore.Playground.API.ViewModels.Review;
+﻿using ARDC.NetCore.Playground.API.ViewModels.GameViewModels;
+using ARDC.NetCore.Playground.API.ViewModels.ReviewViewModels;
 using FluentAssertions;
 using Xunit;
 

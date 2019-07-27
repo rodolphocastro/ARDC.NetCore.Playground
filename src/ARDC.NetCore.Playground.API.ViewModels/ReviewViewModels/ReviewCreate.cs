@@ -1,4 +1,4 @@
-﻿namespace ARDC.NetCore.Playground.API.ViewModels.Review
+﻿namespace ARDC.NetCore.Playground.API.ViewModels.ReviewViewModels
 {
     /// <summary>
     /// Create ViewModel for the Review class.

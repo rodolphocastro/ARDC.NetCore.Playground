@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ARDC.NetCore.Playground.API.ViewModels.Game
+namespace ARDC.NetCore.Playground.API.ViewModels.GameViewModels
 {
     /// <summary>
     /// View ViewModel for the game class.

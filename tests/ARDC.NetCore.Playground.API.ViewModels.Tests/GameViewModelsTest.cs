@@ -1,4 +1,4 @@
-﻿using ARDC.NetCore.Playground.API.ViewModels.Game;
+﻿using ARDC.NetCore.Playground.API.ViewModels.GameViewModels;
 using FluentAssertions;
 using System;
 using Xunit;

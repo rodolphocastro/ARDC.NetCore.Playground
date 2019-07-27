@@ -1,6 +1,6 @@
-﻿using ARDC.NetCore.Playground.API.ViewModels.Game;
+﻿using ARDC.NetCore.Playground.API.ViewModels.GameViewModels;
 
-namespace ARDC.NetCore.Playground.API.ViewModels.Review
+namespace ARDC.NetCore.Playground.API.ViewModels.ReviewViewModels
 {
     /// <summary>
     /// View ViewModel for the Review class.

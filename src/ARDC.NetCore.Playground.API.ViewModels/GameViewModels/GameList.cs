@@ -1,4 +1,4 @@
-﻿namespace ARDC.NetCore.Playground.API.ViewModels.Game
+﻿namespace ARDC.NetCore.Playground.API.ViewModels.GameViewModels
 {
     /// <summary>
     /// List ViewModel for the Game class.
