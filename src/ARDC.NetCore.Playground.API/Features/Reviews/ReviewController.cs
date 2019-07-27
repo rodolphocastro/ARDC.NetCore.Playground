@@ -1,4 +1,5 @@
-﻿using ARDC.NetCore.Playground.Domain.Models;
+﻿using ARDC.NetCore.Playground.Domain;
+using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,12 @@ namespace ARDC.NetCore.Playground.API.Features.Reviews
     [Route("reviews")]
     public class ReviewController : ControllerBase
     {
-        private readonly IReviewRepository _reviewRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        private IReviewRepository ReviewRepository => _unitOfWork.ReviewRepository;
 
-        public ReviewController(IReviewRepository reviewRepository)
+        public ReviewController(IUnitOfWork unitOfWork)
         {
-            _reviewRepository = reviewRepository ?? throw new ArgumentNullException(nameof(reviewRepository));
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         /// <summary>
@@ -23,7 +25,7 @@ namespace ARDC.NetCore.Playground.API.Features.Reviews
         /// <returns>A list of reviews</returns>
         [HttpGet(Name = "GET Reviews")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Review>))]
-        public IActionResult Get() => Ok(_reviewRepository.Get());
+        public IActionResult Get() => Ok(ReviewRepository.Get());
 
         /// <summary>
         /// Get a specific review from the system.
@@ -32,7 +34,7 @@ namespace ARDC.NetCore.Playground.API.Features.Reviews
         /// <returns>The review with the specific id</returns>
         [HttpGet("{id}", Name = "GET Review")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Review))]
-        public IActionResult Get(string id) => Ok(_reviewRepository.Get(id));
+        public IActionResult Get(string id) => Ok(ReviewRepository.Get(id));
 
         /// <summary>
         /// Creates a new review in the system.
@@ -47,7 +49,10 @@ namespace ARDC.NetCore.Playground.API.Features.Reviews
             if (!string.IsNullOrWhiteSpace(review.Id))
                 return BadRequest();
 
-            var createdReview = _reviewRepository.Create(review);
+            var createdReview = ReviewRepository.Create(review);
+
+            _unitOfWork.SaveChanges();
+
             return Created("", createdReview);
         }
 
@@ -62,12 +67,14 @@ namespace ARDC.NetCore.Playground.API.Features.Reviews
         {
             try
             {
-                _reviewRepository.Update(id, review);
+                ReviewRepository.Update(id, review);
             }
             catch (Exception)   //TODO: Validar qual o erro ocorrido
             {
                 return BadRequest();    //TODO: Com base na exception, decidir qual resposta retornar
             }
+
+            _unitOfWork.SaveChanges();
 
             return Ok();
         }
@@ -82,12 +89,15 @@ namespace ARDC.NetCore.Playground.API.Features.Reviews
         {
             try
             {
-                _reviewRepository.Delete(id);
+                ReviewRepository.Delete(id);
             }
             catch (Exception)   //TODO: Validar qual o erro ocorrido
             {
                 return BadRequest();    //TODO: Com base na exception, decidir qual resposta retornar
             }
+
+            _unitOfWork.SaveChanges();
+
             return NoContent();
         }
     }
