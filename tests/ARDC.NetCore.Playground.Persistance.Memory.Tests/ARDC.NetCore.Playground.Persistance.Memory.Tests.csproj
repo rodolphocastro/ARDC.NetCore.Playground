@@ -8,16 +8,16 @@
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.7.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
-    <PackageReference Include="Moq" Version="4.12.0" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ARDC.NetCore.Playground.API\ARDC.NetCore.Playground.API.csproj" />
-    <ProjectReference Include="..\ARDC.NetCore.Playground.Domain\ARDC.NetCore.Playground.Domain.csproj" />
+    <ProjectReference Include="..\..\src\ARDC.NetCore.Playground.Domain\ARDC.NetCore.Playground.Domain.csproj" />
+    <ProjectReference Include="..\..\src\ARDC.NetCore.Playground.Persistance.Memory\ARDC.NetCore.Playground.Persistance.Memory.csproj" />
+    <ProjectReference Include="..\..\src\ARDC.NetCore.Playground.Persistance.Mock\ARDC.NetCore.Playground.Persistance.Mock.csproj" />
   </ItemGroup>
 
 </Project>
