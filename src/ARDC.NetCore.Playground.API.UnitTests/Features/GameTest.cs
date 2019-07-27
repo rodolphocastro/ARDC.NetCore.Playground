@@ -1,4 +1,5 @@
 ﻿using ARDC.NetCore.Playground.API.Features.Games;
+using ARDC.NetCore.Playground.Domain;
 using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
 using ARDC.NetCore.Playground.Persistance.Mock.Generators;
@@ -15,13 +16,16 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
     {
         private readonly IModelGenerator<Game> _gameGenerator;
         private readonly Mock<IGameRepository> _mockRepository;
+        private readonly Mock<IUnitOfWork> _mockUnitOfWork;
         private readonly GameController _controller;
 
         public GameTest()
         {
             _gameGenerator = new GameGenerator();
             _mockRepository = new Mock<IGameRepository>();
-            _controller = new GameController(_mockRepository.Object);
+            _mockUnitOfWork = new Mock<IUnitOfWork>();
+            _mockUnitOfWork.Setup(m => m.GameRepository).Returns(_mockRepository.Object);
+            _controller = new GameController(_mockUnitOfWork.Object);
         }
 
         /// <summary>

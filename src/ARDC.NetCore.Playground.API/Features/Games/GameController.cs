@@ -1,4 +1,5 @@
-﻿using ARDC.NetCore.Playground.Domain.Models;
+﻿using ARDC.NetCore.Playground.Domain;
+using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +14,12 @@ namespace ARDC.NetCore.Playground.API.Features.Games
     [Route("games")]
     public class GameController : ControllerBase
     {
-        private readonly IGameRepository _gameRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        private IGameRepository GameRepository => _unitOfWork.GameRepository;
 
-        public GameController(IGameRepository gameRepository)
+        public GameController(IUnitOfWork unitOfWork)
         {
-            _gameRepository = gameRepository ?? throw new ArgumentNullException(nameof(gameRepository));
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         /// <summary>
@@ -26,7 +28,7 @@ namespace ARDC.NetCore.Playground.API.Features.Games
         /// <returns>A list of games</returns>
         [HttpGet(Name = "GET Games")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Game>))]
-        public IActionResult Get() => Ok(_gameRepository.Get());
+        public IActionResult Get() => Ok(GameRepository.Get());
 
         /// <summary>
         /// Get a specific game from the system.
@@ -35,7 +37,7 @@ namespace ARDC.NetCore.Playground.API.Features.Games
         /// <returns>The game with the specific id</returns>
         [HttpGet("{id}", Name = "GET Game")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Game))]
-        public IActionResult Get(string id) => Ok(_gameRepository.Get(id));
+        public IActionResult Get(string id) => Ok(GameRepository.Get(id));
 
         /// <summary>
         /// Creates a new game in the system.
@@ -50,7 +52,9 @@ namespace ARDC.NetCore.Playground.API.Features.Games
             if (!string.IsNullOrWhiteSpace(game.Id))
                 return BadRequest();
 
-            var createdGame = _gameRepository.Create(game);
+            var createdGame = GameRepository.Create(game);
+            _unitOfWork.SaveChanges();
+
             return Created("", createdGame);
         }
 
@@ -66,12 +70,14 @@ namespace ARDC.NetCore.Playground.API.Features.Games
         {
             try
             {
-                _gameRepository.Update(id, game);
+                GameRepository.Update(id, game);
             }
             catch (Exception)   // TODO: Validar qual tipo de erro ocorreu
             {
                 return BadRequest();    // TODO: Com base na exception, decidir que resposta enviar.
             }
+
+            _unitOfWork.SaveChanges();
 
             return Ok();
         }
@@ -87,12 +93,14 @@ namespace ARDC.NetCore.Playground.API.Features.Games
         {
             try
             {
-                _gameRepository.Delete(id);
+                GameRepository.Delete(id);
             }
             catch (Exception)
             {
                 return BadRequest();
             }
+
+            _unitOfWork.SaveChanges();
 
             return NoContent();
         }
