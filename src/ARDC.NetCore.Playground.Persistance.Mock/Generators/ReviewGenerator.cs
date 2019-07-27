@@ -24,7 +24,8 @@ namespace ARDC.NetCore.Playground.Persistance.Mock.Generators
                 .RuleFor(r => r.AuthorName, f => f.Person.FullName)
                 .RuleFor(r => r.Subject, f => _gameGenerator.Get())
                 .RuleFor(r => r.Score, f => f.Random.Double(0, 10))
-                .RuleFor(r => r.ReviewText, (f, u) => f.Rant.Review(u.Subject.Name));
+                .RuleFor(r => r.ReviewText, (f, u) => f.Rant.Review(u.Subject.Name))
+                .RuleFor(r => r.SubjectId, (f, u) => u.Subject.Id);
         }
 
         public Review Get() => _faker.Generate();

@@ -26,6 +26,11 @@
         public double Score { get; set; }
 
         /// <summary>
+        /// The reviwed game's id.
+        /// </summary>
+        public string SubjectId { get; set; }
+
+        /// <summary>
         /// The game being Reviewed.
         /// </summary>
         public virtual Game Subject { get; set; }
