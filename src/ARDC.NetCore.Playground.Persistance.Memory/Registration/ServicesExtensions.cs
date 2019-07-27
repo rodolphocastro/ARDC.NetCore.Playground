@@ -1,6 +1,5 @@
-﻿using ARDC.NetCore.Playground.Domain.Repositories;
+﻿using ARDC.NetCore.Playground.Domain;
 using ARDC.NetCore.Playground.Persistance.Memory;
-using ARDC.NetCore.Playground.Persistance.Memory.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -14,9 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 opt.UseInMemoryDatabase("PlaygroundDb");
             });
-            services.AddScoped<IGameRepository, GameRepository>();
-            services.AddScoped<IReviewRepository, ReviewRepository>();
-            // TODO: Registrar UoW
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }
 }

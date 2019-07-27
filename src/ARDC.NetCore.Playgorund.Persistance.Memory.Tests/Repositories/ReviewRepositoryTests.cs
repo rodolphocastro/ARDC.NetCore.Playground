@@ -1,12 +1,11 @@
-﻿using ARDC.NetCore.Playground.Domain.Models;
+﻿using ARDC.NetCore.Playground.Domain;
+using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
 using ARDC.NetCore.Playground.Persistance.Mock.Generators;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -14,16 +13,14 @@ namespace ARDC.NetCore.Playground.Persistance.Memory.Tests.Repositories
 {
     public class ReviewRepositoryTests : IClassFixture<ServiceProviderFixture>
     {
-        private readonly IModelGenerator<Game> _gameGenerator;
         private readonly IModelGenerator<Review> _reviewGenerator;
         private readonly IReviewRepository _reviewRepository;
         private readonly PlaygroundContext _context;
 
         public ReviewRepositoryTests(ServiceProviderFixture fixture)
         {
-            _gameGenerator = fixture.Provider.GetService<IModelGenerator<Game>>();
             _reviewGenerator = fixture.Provider.GetService<IModelGenerator<Review>>();
-            _reviewRepository = fixture.Provider.GetService<IReviewRepository>();
+            _reviewRepository = fixture.Provider.GetService<IUnitOfWork>().ReviewRepository;
             _context = fixture.Provider.GetService<PlaygroundContext>();
         }
 

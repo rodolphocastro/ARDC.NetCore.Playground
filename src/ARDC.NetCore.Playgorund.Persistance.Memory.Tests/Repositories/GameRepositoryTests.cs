@@ -1,4 +1,5 @@
-﻿using ARDC.NetCore.Playground.Domain.Models;
+﻿using ARDC.NetCore.Playground.Domain;
+using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
 using ARDC.NetCore.Playground.Persistance.Mock.Generators;
 using FluentAssertions;
@@ -20,7 +21,7 @@ namespace ARDC.NetCore.Playground.Persistance.Memory.Tests.Repositories
         public GameRepositoryTests(ServiceProviderFixture fixture)
         {
             _gameGenerator = fixture.Provider.GetService<IModelGenerator<Game>>();
-            _gameRepository = fixture.Provider.GetService<IGameRepository>();
+            _gameRepository = fixture.Provider.GetService<IUnitOfWork>().GameRepository;
             _context = fixture.Provider.GetService<PlaygroundContext>();
         }
 
