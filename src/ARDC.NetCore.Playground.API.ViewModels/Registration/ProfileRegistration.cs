@@ -12,6 +12,6 @@ namespace ARDC.NetCore.Playground.API.ViewModels.Registration
         /// Get all the current mapping profiles available.
         /// </summary>
         /// <returns>An array of Profile's types</returns>
-        public static Type[] GetProfiles() => new[] { typeof(GameProfile) };
+        public static Type[] GetProfiles() => new[] { typeof(GameProfile), typeof(ReviewProfile) };
     }
 }
