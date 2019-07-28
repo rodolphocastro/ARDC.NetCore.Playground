@@ -30,6 +30,6 @@ namespace ARDC.NetCore.Playground.API.ViewModels.ReviewViewModels
         /// <summary>
         /// The reviewed game.
         /// </summary>
-        public virtual GameList ReviewSubject { get; set; }
+        public virtual GameList Subject { get; set; }
     }
 }
