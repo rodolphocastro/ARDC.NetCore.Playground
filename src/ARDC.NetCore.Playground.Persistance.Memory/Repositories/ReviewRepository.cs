@@ -20,6 +20,8 @@ namespace ARDC.NetCore.Playground.Persistance.Memory.Repositories
 
         public Review Create(Review review)
         {
+            var game = _context.Games.Where(g => g.Id == review.SubjectId).SingleOrDefault();
+            review.Subject = game ?? throw new ArgumentException("no game found for given id", nameof(review.SubjectId));
             var newReview = _context.Reviews.Add(review);
             return newReview.Entity;
         }
@@ -42,13 +44,13 @@ namespace ARDC.NetCore.Playground.Persistance.Memory.Repositories
 
         public Task DeleteAsync(Review review, CancellationToken ct) => Task.FromResult(_context.Reviews.Remove(review));
 
-        public Review Get(string id) => _context.Reviews.Where(r => r.Id == id).SingleOrDefault();
+        public Review Get(string id) => _context.Reviews.Include(r => r.Subject).Where(r => r.Id == id).SingleOrDefault();
 
-        public IList<Review> Get() => _context.Reviews.ToList();
+        public IList<Review> Get() => _context.Reviews.Include(r => r.Subject).ToList();
 
-        public async Task<Review> GetAsync(string id, CancellationToken ct) => await _context.Reviews.Where(r => r.Id == id).SingleOrDefaultAsync(ct);
+        public async Task<Review> GetAsync(string id, CancellationToken ct) => await _context.Reviews.Include(r => r.Subject).Where(r => r.Id == id).SingleOrDefaultAsync(ct);
 
-        public async Task<IList<Review>> GetAsync(CancellationToken ct) => await _context.Reviews.ToListAsync(ct);
+        public async Task<IList<Review>> GetAsync(CancellationToken ct) => await _context.Reviews.Include(r => r.Subject).ToListAsync(ct);
 
         public void Update(string id, Review review) => _context.Entry(review).State = EntityState.Modified;
 
