@@ -19,6 +19,10 @@ namespace ARDC.NetCore.Playground.API
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((builderContext, config) =>
+                {
+                    config.AddJsonFile("settings/appsettings.docker.json", optional: true);
+                })
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
