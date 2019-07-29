@@ -14,6 +14,10 @@
 
 This repository aims to provide examples on how to build a RESTFul API using Microsoft's dotNet Core 2.2.
 
+## Docker
+
+This repository is available at [DockerHub](https://cloud.docker.com/repository/docker/rodolphoalves/ardcnetcoreplaygroundapi).
+
 ## Technologies
 
 WIP
