@@ -1,8 +1,11 @@
 ﻿using ARDC.NetCore.Playground.API.Features.Games;
+using ARDC.NetCore.Playground.API.ViewModels.GameViewModels;
+using ARDC.NetCore.Playground.API.ViewModels.Registration;
 using ARDC.NetCore.Playground.Domain;
 using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
 using ARDC.NetCore.Playground.Persistance.Mock.Generators;
+using AutoMapper;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -14,6 +17,7 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
 {
     public class GameTest
     {
+        private readonly IMapper _mapper;
         private readonly IModelGenerator<Game> _gameGenerator;
         private readonly Mock<IGameRepository> _mockRepository;
         private readonly Mock<IUnitOfWork> _mockUnitOfWork;
@@ -21,11 +25,13 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
 
         public GameTest()
         {
+            var mapperConfig = new MapperConfiguration(cfg => cfg.AddMaps(ProfileRegistration.GetProfiles()));
+            _mapper = mapperConfig.CreateMapper();
             _gameGenerator = new GameGenerator();
             _mockRepository = new Mock<IGameRepository>();
             _mockUnitOfWork = new Mock<IUnitOfWork>();
             _mockUnitOfWork.Setup(m => m.GameRepository).Returns(_mockRepository.Object);
-            _controller = new GameController(_mockUnitOfWork.Object);
+            _controller = new GameController(_mockUnitOfWork.Object, _mapper);
         }
 
         /// <summary>
@@ -48,10 +54,10 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
                 .Which
                 .Value.Should()
                     .NotBeNull("an object is always expected, even if empty").And
-                    .BeAssignableTo<IList<Game>>("it should implement IList<T>").And
-                    .BeOfType<List<Game>>("it should be a List of Games");
+                    .BeAssignableTo<IList<GameList>>("it should implement IList<T>").And
+                    .BeOfType<List<GameList>>("it should be a List of Games");
 
-            var games = (result as OkObjectResult).Value as List<Game>;
+            var games = (result as OkObjectResult).Value as List<GameList>;
             games.Should()
                 .NotBeEmpty("its repository has elements").And
                 .HaveCount(count, $"its repository has {count} elements");
@@ -67,8 +73,6 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
             _mockRepository.Setup(m => m.Get(It.IsAny<string>())).Returns(fakeGame);
             var result = _controller.Get("gameId");
 
-            // TODO: Futuramente o Controller poderá retornar 404 Not Found, preciso ver como testas estes casos.
-
             result.Should()
                 .NotBeNull("a result is always expected").And
                 .BeAssignableTo<IActionResult>("it should implement IActionResult").And
@@ -76,30 +80,49 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
                 .Which
                 .Value.Should()
                     .NotBeNull("a result is always expected").And
-                    .BeOfType<Game>("it should be a Game");
+                    .BeOfType<GameView>("it should be a Game");
 
-            var game = (result as OkObjectResult).Value as Game;
+            var game = (result as OkObjectResult).Value as GameView;
             game.Should()
                 .BeEquivalentTo(fakeGame, "should be the same game as the one returned by the Repository");
 
         }
         
         /// <summary>
+        /// It should be possible to get an unexisting game without a 500 status.
+        /// </summary>
+        [Fact(DisplayName = "Get an Unexisting Game")]
+        public void GetUnexistingGame()
+        {
+            _mockRepository.Setup(m => m.Get("gameId")).Returns<GameView>(null);
+            var result = _controller.Get("gameId");
+
+            result.Should()
+                .NotBeNull(because: "a result is always expected").And
+                .BeAssignableTo<IActionResult>(because: "it should be an implementation of IActionResult").And
+                .BeOfType<NotFoundResult>(because: "it should be a 404 Not Found");
+        }
+
+        /// <summary>
         /// It should be possible to create a game.
         /// </summary>
         [Fact(DisplayName = "Create a Game")]
         public void CreateGame()
         {
-            var newGame = new Game
+            var newGame = new GameCreate
             {
                 Name = "Pudim of War",
-                ReleasedOn = DateTime.Now.AddYears(-2)
+                ReleasedOn = DateTime.Now.AddYears(-2)                
             };
 
             _mockRepository.Setup(m => m.Create(It.IsAny<Game>())).Returns(() =>
             {
-                newGame.Id = Guid.NewGuid().ToString();
-                return newGame;
+                return new Game
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = newGame.Name,
+                    ReleasedOn = newGame.ReleasedOn
+                };
             });
 
             // TODO: Futuramente o controller poderá falhar em creates, rever este teste.
@@ -112,7 +135,7 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
                 .Which
                 .Value.Should()
                     .NotBeNull("it should mimic the game we sent to the controller").And
-                    .BeOfType<Game>("it is created as a game")
+                    .BeOfType<GameView>("it is created as a game")
                     .Which
                     .Id.Should()
                         .NotBeNullOrWhiteSpace("it should be generated by the Repository");
@@ -122,39 +145,21 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
         }
 
         /// <summary>
-        /// It shouldn't be possible to create a game which already has an ID.
-        /// </summary>
-        [Fact(DisplayName = "Create an existing Game")]
-        public void CreateDuplicateGame()
-        {
-            var newGame = _gameGenerator.Get();
-
-            _mockRepository.Setup(m => m.Create(newGame)).Throws<Exception>();
-
-            var result = _controller.Create(newGame);
-
-            result.Should()
-                .NotBeNull("a result is always expected").And
-                .BeAssignableTo<IActionResult>("it should implement IActionResult").And
-                .BeOfType<BadRequestResult>("it should be a Bad Request");
-        }
-
-        /// <summary>
         /// It should be possible to update an existing game.
         /// </summary>
         [Fact(DisplayName = "Update a Game")]
         public void UpdateGame()
         {
-            var game = new Game
+            var game = new GameEdit
             {
-                Id = "pudimofwar",
                 Name = "Pudim War",
-                ReleasedOn = DateTime.Now
+                ReleasedOn = DateTime.Now                
             };
 
             _mockRepository.Setup(m => m.Update(It.IsAny<string>(), It.IsAny<Game>()));
+            _mockRepository.Setup(m => m.Get("gameId")).Returns(new Game { Id = "gameId", Name = "Old Name", ReleasedOn = DateTime.Now.AddYears(-7) });
 
-            var result = _controller.Update(game.Id, game);
+            var result = _controller.Update("gameId", game);
             result.Should()
                 .NotBeNull("a result is always expected").And
                 .BeAssignableTo<IActionResult>("it should implement IActionResult").And
