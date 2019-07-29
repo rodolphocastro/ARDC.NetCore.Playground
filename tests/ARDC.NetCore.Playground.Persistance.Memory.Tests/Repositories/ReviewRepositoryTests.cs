@@ -3,6 +3,7 @@ using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
 using ARDC.NetCore.Playground.Persistance.Mock.Generators;
 using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
@@ -31,6 +32,9 @@ namespace ARDC.NetCore.Playground.Persistance.Memory.Tests.Repositories
         public void Create()
         {
             var newReview = _reviewGenerator.Get();
+            var game = _context.Games.FirstOrDefault();
+            newReview.Subject = game;
+            newReview.SubjectId = game.Id;
             var reviewCount = _reviewRepository.Get().Count;
 
             var createdReview = _reviewRepository.Create(newReview);
@@ -51,6 +55,9 @@ namespace ARDC.NetCore.Playground.Persistance.Memory.Tests.Repositories
         public async Task CreateAsync()
         {
             var newReview = _reviewGenerator.Get();
+            var game = await _context.Games.FirstOrDefaultAsync();
+            newReview.Subject = game;
+            newReview.SubjectId = game.Id;
             var reviewCount = (await _reviewRepository.GetAsync()).Count;
 
             var createdReview = await _reviewRepository.CreateAsync(newReview);
