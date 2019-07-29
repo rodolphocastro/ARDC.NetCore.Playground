@@ -23,9 +23,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.Per
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.Persistance.Memory.Tests", "..\tests\ARDC.NetCore.Playground.Persistance.Memory.Tests\ARDC.NetCore.Playground.Persistance.Memory.Tests.csproj", "{611A0D1E-9528-4F58-9AB9-9090C68FE62B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARDC.NetCore.Playground.API.ViewModels", "ARDC.NetCore.Playground.API.ViewModels\ARDC.NetCore.Playground.API.ViewModels.csproj", "{7474377A-D012-4A81-982F-E3B9493DD003}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.API.ViewModels", "ARDC.NetCore.Playground.API.ViewModels\ARDC.NetCore.Playground.API.ViewModels.csproj", "{7474377A-D012-4A81-982F-E3B9493DD003}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARDC.NetCore.Playground.API.ViewModels.Tests", "..\tests\ARDC.NetCore.Playground.API.ViewModels.Tests\ARDC.NetCore.Playground.API.ViewModels.Tests.csproj", "{92D54398-70CF-4C46-B941-82DBCF1FDAB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.API.ViewModels.Tests", "..\tests\ARDC.NetCore.Playground.API.ViewModels.Tests\ARDC.NetCore.Playground.API.ViewModels.Tests.csproj", "{92D54398-70CF-4C46-B941-82DBCF1FDAB9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B530559D-79A6-474F-B0E3-E6E4D18E4CF6}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		..\.travis.yml = ..\.travis.yml
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
