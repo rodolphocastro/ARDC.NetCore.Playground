@@ -1,0 +1,96 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.API", "ARDC.NetCore.Playground.API\ARDC.NetCore.Playground.API.csproj", "{19AF0BCB-DDD3-4CAA-AB96-4ABC41F6B126}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.Domain", "ARDC.NetCore.Playground.Domain\ARDC.NetCore.Playground.Domain.csproj", "{B0C79C9D-2ADD-4B17-B882-83C7420252FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{E8699914-D1B0-4230-A03A-1EFDE5449DF8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.Persistance.Mock", "ARDC.NetCore.Playground.Persistance.Mock\ARDC.NetCore.Playground.Persistance.Mock.csproj", "{A5963B19-69FA-4890-AC53-AF8933E3B673}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6C78AC9F-F03A-478E-B1AC-5C1E3B2B0E89}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.Persistance.Memory", "ARDC.NetCore.Playground.Persistance.Memory\ARDC.NetCore.Playground.Persistance.Memory.csproj", "{6BE002BF-E8AF-4D76-8899-290CE6EA69A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistance", "Persistance", "{52260039-7ABA-4734-BF78-618A89FDA455}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.API.UnitTests", "..\tests\ARDC.NetCore.Playground.API.UnitTests\ARDC.NetCore.Playground.API.UnitTests.csproj", "{5718EC82-F998-457D-9A5F-42891566AB39}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.Persistance.Mock.Tests", "..\tests\ARDC.NetCore.Playground.Persistance.Mock.Tests\ARDC.NetCore.Playground.Persistance.Mock.Tests.csproj", "{925060C7-3721-4663-817D-38A544E60A9C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.Persistance.Memory.Tests", "..\tests\ARDC.NetCore.Playground.Persistance.Memory.Tests\ARDC.NetCore.Playground.Persistance.Memory.Tests.csproj", "{611A0D1E-9528-4F58-9AB9-9090C68FE62B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.API.ViewModels", "ARDC.NetCore.Playground.API.ViewModels\ARDC.NetCore.Playground.API.ViewModels.csproj", "{7474377A-D012-4A81-982F-E3B9493DD003}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.API.ViewModels.Tests", "..\tests\ARDC.NetCore.Playground.API.ViewModels.Tests\ARDC.NetCore.Playground.API.ViewModels.Tests.csproj", "{92D54398-70CF-4C46-B941-82DBCF1FDAB9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B530559D-79A6-474F-B0E3-E6E4D18E4CF6}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		..\.travis.yml = ..\.travis.yml
+		..\CHANGELOG.md = ..\CHANGELOG.md
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19AF0BCB-DDD3-4CAA-AB96-4ABC41F6B126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19AF0BCB-DDD3-4CAA-AB96-4ABC41F6B126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19AF0BCB-DDD3-4CAA-AB96-4ABC41F6B126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19AF0BCB-DDD3-4CAA-AB96-4ABC41F6B126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0C79C9D-2ADD-4B17-B882-83C7420252FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0C79C9D-2ADD-4B17-B882-83C7420252FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0C79C9D-2ADD-4B17-B882-83C7420252FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0C79C9D-2ADD-4B17-B882-83C7420252FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5963B19-69FA-4890-AC53-AF8933E3B673}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5963B19-69FA-4890-AC53-AF8933E3B673}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5963B19-69FA-4890-AC53-AF8933E3B673}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5963B19-69FA-4890-AC53-AF8933E3B673}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BE002BF-E8AF-4D76-8899-290CE6EA69A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BE002BF-E8AF-4D76-8899-290CE6EA69A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BE002BF-E8AF-4D76-8899-290CE6EA69A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BE002BF-E8AF-4D76-8899-290CE6EA69A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5718EC82-F998-457D-9A5F-42891566AB39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5718EC82-F998-457D-9A5F-42891566AB39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5718EC82-F998-457D-9A5F-42891566AB39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5718EC82-F998-457D-9A5F-42891566AB39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{925060C7-3721-4663-817D-38A544E60A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{925060C7-3721-4663-817D-38A544E60A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{925060C7-3721-4663-817D-38A544E60A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{925060C7-3721-4663-817D-38A544E60A9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{611A0D1E-9528-4F58-9AB9-9090C68FE62B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{611A0D1E-9528-4F58-9AB9-9090C68FE62B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{611A0D1E-9528-4F58-9AB9-9090C68FE62B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{611A0D1E-9528-4F58-9AB9-9090C68FE62B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7474377A-D012-4A81-982F-E3B9493DD003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7474377A-D012-4A81-982F-E3B9493DD003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7474377A-D012-4A81-982F-E3B9493DD003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7474377A-D012-4A81-982F-E3B9493DD003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92D54398-70CF-4C46-B941-82DBCF1FDAB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92D54398-70CF-4C46-B941-82DBCF1FDAB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92D54398-70CF-4C46-B941-82DBCF1FDAB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92D54398-70CF-4C46-B941-82DBCF1FDAB9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A5963B19-69FA-4890-AC53-AF8933E3B673} = {E8699914-D1B0-4230-A03A-1EFDE5449DF8}
+		{6BE002BF-E8AF-4D76-8899-290CE6EA69A8} = {E8699914-D1B0-4230-A03A-1EFDE5449DF8}
+		{52260039-7ABA-4734-BF78-618A89FDA455} = {6C78AC9F-F03A-478E-B1AC-5C1E3B2B0E89}
+		{5718EC82-F998-457D-9A5F-42891566AB39} = {6C78AC9F-F03A-478E-B1AC-5C1E3B2B0E89}
+		{925060C7-3721-4663-817D-38A544E60A9C} = {52260039-7ABA-4734-BF78-618A89FDA455}
+		{611A0D1E-9528-4F58-9AB9-9090C68FE62B} = {52260039-7ABA-4734-BF78-618A89FDA455}
+		{92D54398-70CF-4C46-B941-82DBCF1FDAB9} = {6C78AC9F-F03A-478E-B1AC-5C1E3B2B0E89}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6AB0C9E3-3D56-4B89-9092-4423C9596765}
+	EndGlobalSection
+EndGlobal

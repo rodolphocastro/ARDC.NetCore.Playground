@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <UserSecretsId>799f92ff-7124-4afd-b238-b7b78c39922c</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <Authors>Rodolpho C Alves</Authors>
+    <Company>ARDC</Company>
+    <Product>Playground API</Product>
+    <PackageProjectUrl>https://github.com/rodolphocastro/ARDC.NetCore.Playground</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/rodolphocastro/ARDC.NetCore.Playground</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Version>1.0.0-alpha.1</Version>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="AspNet.Security.OAuth.GitHub" Version="2.1.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.HealthChecks" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.9" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ARDC.NetCore.Playground.API.ViewModels\ARDC.NetCore.Playground.API.ViewModels.csproj" />
+    <ProjectReference Include="..\ARDC.NetCore.Playground.Domain\ARDC.NetCore.Playground.Domain.csproj" />
+    <ProjectReference Include="..\ARDC.NetCore.Playground.Persistance.Memory\ARDC.NetCore.Playground.Persistance.Memory.csproj" />
+    <ProjectReference Include="..\ARDC.NetCore.Playground.Persistance.Mock\ARDC.NetCore.Playground.Persistance.Mock.csproj" />
+  </ItemGroup>
+
+</Project>

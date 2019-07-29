@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Authors>Rodolpho C Alves</Authors>
+    <Company>ARDC</Company>
+    <Product>Playground API</Product>
+    <RepositoryUrl>https://github.com/rodolphocastro/ARDC.NetCore.Playground</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/rodolphocastro/ARDC.NetCore.Playground</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <Version>1.0.0-alpha.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ARDC.NetCore.Playground.Domain\ARDC.NetCore.Playground.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
