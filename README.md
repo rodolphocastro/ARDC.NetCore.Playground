@@ -1,4 +1,4 @@
-# NetCore Playground
+# ARDC NetCore Playground
 
 ## Status
 
@@ -9,6 +9,10 @@
 ### Develop
 
 [![Build Status](https://travis-ci.com/rodolphocastro/ARDC.NetCore.Playground.svg?branch=develop)](https://travis-ci.com/rodolphocastro/ARDC.NetCore.Playground)
+
+### Changelogs
+
+The changelogs for this API can be found in the `CHANGELOG.md` file.
 
 ## About this Repository
 
@@ -24,10 +28,40 @@ You can use the following command to run this API: `docker run -p 80:80 -it -v C
 
 Change `c:\dockervolumes\playground` to wherever you store you `appsettings.docker.json`. Failing to map the settings file will lead to an `ArgumentNullException`.
 
+## Building
+
+To build this project you'll need the DotNet 2.2 SDK.
+
+Then use the following CLI commands:
+
++ Restore Nuget Packages: `dotnet restore .\src\ARDC.NetCore.Playground.sln`
++ Build: `dotnet build .\src\ARDC.NetCore.Playground.sln`
++ Publish: `dotnet publish .\src\ARDC.NetCore.Playground.sln -c Release`
+
+## Running and Testing
+
+To run all the tests run the CLI command `dotnet test .\src\ARDC.NetCore.Playground.sln`.
+
+To run the API, without docker, use the command `dotnet run --project .\src\ARDC.NetCore.Playground.API\`
+
 ## Technologies
 
-WIP
+The following technologies and packages are used in this project:
+
++ Docker
++ Travis-ci
++ DotNet Core 2.2
+    + API
+        + AspNet.Security.OAuth.GitHub
+        + AutoMapper
+        + Swashbuckle
+    + Persistence
+        + EntityFramework Core InMemory
+        + Bogus
++ xUnit
+    + FluentAssertions
+    + Moq
 
 ## Contributing
 
-WIP
+If you find a bug or wish to make a suggestion feel free to open a new Issue.
