@@ -1,8 +1,11 @@
 ﻿using ARDC.NetCore.Playground.API.Features.Reviews;
+using ARDC.NetCore.Playground.API.ViewModels.Registration;
+using ARDC.NetCore.Playground.API.ViewModels.ReviewViewModels;
 using ARDC.NetCore.Playground.Domain;
 using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
 using ARDC.NetCore.Playground.Persistance.Mock.Generators;
+using AutoMapper;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -14,6 +17,7 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
 {
     public class ReviewTest
     {
+        private readonly IMapper _mapper;
         private readonly IModelGenerator<Review> _reviewGenerator;
         private readonly Mock<IReviewRepository> _fakeRepository;
         private readonly Mock<IUnitOfWork> _fakeUnitOfWork;
@@ -21,11 +25,13 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
 
         public ReviewTest()
         {
+            var mapperConfig = new MapperConfiguration(cfg => cfg.AddMaps(ProfileRegistration.GetProfiles()));
+            _mapper = mapperConfig.CreateMapper();
             _reviewGenerator = new ReviewGenerator(new GameGenerator());
             _fakeRepository = new Mock<IReviewRepository>();
             _fakeUnitOfWork = new Mock<IUnitOfWork>();
             _fakeUnitOfWork.Setup(m => m.ReviewRepository).Returns(_fakeRepository.Object);
-            _controller = new ReviewController(_fakeUnitOfWork.Object);
+            _controller = new ReviewController(_fakeUnitOfWork.Object, _mapper);
         }
 
         /// <summary>
@@ -47,10 +53,10 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
                 .BeOfType<OkObjectResult>("it should be an Ok Result").Which
                 .Value.Should()
                     .NotBeNull("a object is always expected").And
-                    .BeAssignableTo<IList<Review>>("it should be an implementation of IList<T>").And
-                    .BeOfType<List<Review>>("it should be a List of Reviews, even if empty");
+                    .BeAssignableTo<IList<ReviewList>>("it should be an implementation of IList<T>").And
+                    .BeOfType<List<ReviewList>>("it should be a List of Reviews, even if empty");
 
-            var reviews = (result as OkObjectResult).Value as List<Review>;
+            var reviews = (result as OkObjectResult).Value as List<ReviewList>;
             reviews.Should()
                 .NotBeEmpty("its repository has elements").And
                 .HaveCount(count, $"its repository has {count} elements");
@@ -72,12 +78,12 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
                 .BeOfType<OkObjectResult>("it should be an OK Result").Which
                 .Value.Should()
                     .NotBeNull("an object is always expected").And
-                    .BeOfType<Review>("it should be a Review");
+                    .BeOfType<ReviewView>("it should be a Review");
 
-            var returnedReview = (result as OkObjectResult).Value as Review;
+            var returnedReview = (result as OkObjectResult).Value as ReviewView;
             returnedReview.Should()
-                .BeEquivalentTo(newReview, "it should be the same as the review we sent to the Controller");
-
+                .BeEquivalentTo(newReview, opt => opt.ExcludingMissingMembers(), because: "it should be the same as the review we sent to the Controller");
+            returnedReview.Subject.Should().BeEquivalentTo(newReview.Subject, cfg => cfg.ExcludingMissingMembers());
         }
 
         /// <summary>
@@ -86,12 +92,30 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
         [Fact(DisplayName = "Create a Review")]
         public void CreateReview()
         {
-            var newReview = _reviewGenerator.Get();
-            newReview.Id = string.Empty;
-            _fakeRepository.Setup(m => m.Create(newReview)).Returns(() =>
+            var newReview = new ReviewCreate
             {
-                newReview.Id = Guid.NewGuid().ToString();
-                return newReview;
+                AuthorName = "Rodolpho Alves",
+                ReviewText = "Lorem ipsum dolor sit amet",
+                Score = 6d,
+                SubjectId = Guid.NewGuid().ToString()
+            };
+
+            _fakeRepository.Setup(m => m.Create(It.IsAny<Review>())).Returns(() =>
+            {
+                return new Review
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    AuthorName = newReview.AuthorName,
+                    ReviewText = newReview.ReviewText,
+                    Score = newReview.Score,
+                    SubjectId = newReview.SubjectId,
+                    Subject = new Game
+                    {
+                        Id = newReview.SubjectId,
+                        Name = "Lorem Ipsum",
+                        ReleasedOn = DateTime.Now
+                    }
+                };
             });
 
             var result = _controller.Create(newReview);
@@ -101,27 +125,11 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
                 .BeOfType<CreatedResult>("it should be a Created result").Which
                 .Value.Should()
                     .NotBeNull("a object is always excepcted").And
-                    .BeOfType<Review>("it should be the review we just sent");
+                    .BeOfType<ReviewView>("it should be the review we just sent");
 
-            var createdReview = (result as CreatedResult).Value as Review;
+            var createdReview = (result as CreatedResult).Value as ReviewView;
             createdReview.Should()
-                .BeEquivalentTo(newReview, "it should be equal to the one we sent to the controller");
-        }
-
-        /// <summary>
-        /// It shouldn't be possible to create an existing review.
-        /// </summary>
-        [Fact(DisplayName = "Create an existing Review")]
-        public void CreateExistingReview()
-        {
-            var newReview = _reviewGenerator.Get();
-            _fakeRepository.Setup(m => m.Create(newReview)).Throws<Exception>();            
-
-            var result = _controller.Create(newReview);
-            result.Should()
-                .NotBeNull("a result is always expected").And
-                .BeAssignableTo<IActionResult>("should implement IActionResult").And
-                .BeOfType<BadRequestResult>("it should be a Bad Request");                
+                .BeEquivalentTo(newReview, cfg => cfg.ExcludingMissingMembers(), because: "it should be equal to the one we sent to the controller");
         }
 
         /// <summary>
@@ -130,10 +138,30 @@ namespace ARDC.NetCore.Playground.API.UnitTests.Features
         [Fact(DisplayName = "Update a Review")]
         public void UpdateReview()
         {
-            var review = _reviewGenerator.Get();
-            _fakeRepository.Setup(m => m.Update(review.Id, review));
+            var reviewEdit = new ReviewEdit
+            {
+                ReviewText = "New Text",
+                Score = 6d
+            };
 
-            var result = _controller.Update(review.Id, review);
+            _fakeRepository.Setup(m => m.Get("reviewId")).Returns(new Review
+            {
+                Id = "reviewId",
+                AuthorName = "Author",
+                ReviewText = "Lorem ipsum dolor sit amet",
+                Score = 10d,
+                SubjectId = Guid.NewGuid().ToString(),
+                Subject = new Game
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "A Game",
+                    ReleasedOn = DateTime.Now
+                }
+            });
+
+            _fakeRepository.Setup(m => m.Update("reviewId", It.IsAny<Review>()));
+
+            var result = _controller.Update("reviewId", reviewEdit);
             result.Should()
                 .NotBeNull("a result is always expected").And
                 .BeAssignableTo<IActionResult>("it should implement IActionResult").And
