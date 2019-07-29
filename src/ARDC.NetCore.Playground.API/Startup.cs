@@ -7,6 +7,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using ARDC.NetCore.Playground.API.Filters;
 using ARDC.NetCore.Playground.API.Settings;
+using ARDC.NetCore.Playground.API.ViewModels.Registration;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -44,6 +46,7 @@ namespace ARDC.NetCore.Playground.API
             // TODO: Permitir que a implementação seja escolhida por Settings
             services.AddGenerators();
             services.AddMemoryPersistence();
+            services.AddAutoMapper(ProfileRegistration.GetProfiles());
 
             services.AddMvc();
 

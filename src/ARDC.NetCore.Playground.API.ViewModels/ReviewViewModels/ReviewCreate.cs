@@ -1,15 +1,10 @@
-﻿namespace ARDC.NetCore.Playground.Domain.Models
+﻿namespace ARDC.NetCore.Playground.API.ViewModels.ReviewViewModels
 {
     /// <summary>
-    /// A review about a Game.
+    /// Create ViewModel for the Review class.
     /// </summary>
-    public class Review
+    public class ReviewCreate
     {
-        /// <summary>
-        /// Unique Identifier.
-        /// </summary>
-        public string Id { get; set; }
-
         /// <summary>
         /// Name of the Author.
         /// </summary>
@@ -29,10 +24,5 @@
         /// The reviwed game's id.
         /// </summary>
         public string SubjectId { get; set; }
-
-        /// <summary>
-        /// The game being Reviewed.
-        /// </summary>
-        public virtual Game Subject { get; set; }
     }
 }
