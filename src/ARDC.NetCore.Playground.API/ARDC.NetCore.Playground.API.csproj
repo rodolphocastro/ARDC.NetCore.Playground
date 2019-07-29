@@ -5,6 +5,13 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <UserSecretsId>799f92ff-7124-4afd-b238-b7b78c39922c</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <Authors>Rodolpho C Alves</Authors>
+    <Company>ARDC</Company>
+    <Product>Playground API</Product>
+    <PackageProjectUrl>https://github.com/rodolphocastro/ARDC.NetCore.Playground</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/rodolphocastro/ARDC.NetCore.Playground</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Version>1.0.0-alpha.1</Version>
   </PropertyGroup>
   
   <ItemGroup>
