@@ -1,12 +1,12 @@
 ﻿using ARDC.NetCore.Playground.Domain.Models;
-using ARDC.NetCore.Playground.Persistance.Mock.Generators;
+using ARDC.NetCore.Playground.Persistence.Mock.Generators;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using Xunit;
 
-namespace ARDC.NetCore.Playground.Persistance.Mock.Tests.Generators
+namespace ARDC.NetCore.Playground.Persistence.Mock.Tests.Generators
 {
     /// <summary>
     /// Tests for the GameGenerator.

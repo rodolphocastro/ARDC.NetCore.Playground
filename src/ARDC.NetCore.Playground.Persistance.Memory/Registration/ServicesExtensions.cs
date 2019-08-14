@@ -1,5 +1,5 @@
 ﻿using ARDC.NetCore.Playground.Domain;
-using ARDC.NetCore.Playground.Persistance.Memory;
+using ARDC.NetCore.Playground.Persistence.Core;
 using Microsoft.EntityFrameworkCore;
 
 namespace Microsoft.Extensions.DependencyInjection

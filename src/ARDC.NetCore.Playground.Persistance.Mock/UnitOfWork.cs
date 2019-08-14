@@ -1,13 +1,13 @@
 ﻿using ARDC.NetCore.Playground.Domain;
 using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
-using ARDC.NetCore.Playground.Persistance.Mock.Generators;
-using ARDC.NetCore.Playground.Persistance.Mock.Repositories;
+using ARDC.NetCore.Playground.Persistence.Mock.Generators;
+using ARDC.NetCore.Playground.Persistence.Mock.Repositories;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ARDC.NetCore.Playground.Persistance.Mock
+namespace ARDC.NetCore.Playground.Persistence.Mock
 {
     public class UnitOfWork : IUnitOfWork
     {

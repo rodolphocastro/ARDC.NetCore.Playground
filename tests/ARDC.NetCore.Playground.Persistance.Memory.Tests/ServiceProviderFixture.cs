@@ -1,8 +1,8 @@
 ﻿using ARDC.NetCore.Playground.Domain.Models;
-using ARDC.NetCore.Playground.Persistance.Mock.Generators;
+using ARDC.NetCore.Playground.Persistence.Mock.Generators;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ARDC.NetCore.Playground.Persistance.Memory.Tests
+namespace ARDC.NetCore.Playground.Persistence.Core.Tests
 {
     public class ServiceProviderFixture
     {

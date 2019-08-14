@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ARDC.NetCore.Playground.Persistance.Memory.Configuration
+namespace ARDC.NetCore.Playground.Persistence.Core.Configuration
 {
     /// <summary>
     /// Configurations for the Review Entity.

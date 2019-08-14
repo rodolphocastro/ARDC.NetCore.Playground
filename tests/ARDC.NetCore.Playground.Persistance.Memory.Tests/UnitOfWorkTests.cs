@@ -5,7 +5,7 @@ using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace ARDC.NetCore.Playground.Persistance.Memory.Tests
+namespace ARDC.NetCore.Playground.Persistence.Core.Tests
 {
     public class UnitOfWorkTests : IClassFixture<ServiceProviderFixture>
     {

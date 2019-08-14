@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace ARDC.NetCore.Playground.Persistance.Mock.Tests
+namespace ARDC.NetCore.Playground.Persistence.Mock.Tests
 {
     public class ServiceProviderFixture
     {

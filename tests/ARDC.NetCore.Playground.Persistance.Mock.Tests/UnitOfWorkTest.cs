@@ -1,13 +1,13 @@
 ﻿using ARDC.NetCore.Playground.Domain;
 using ARDC.NetCore.Playground.Domain.Repositories;
-using ARDC.NetCore.Playground.Persistance.Mock.Repositories;
+using ARDC.NetCore.Playground.Persistence.Mock.Repositories;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace ARDC.NetCore.Playground.Persistance.Mock.Tests
+namespace ARDC.NetCore.Playground.Persistence.Mock.Tests
 {
     /// <summary>
     /// Tests for the UnitOfWork Mock.

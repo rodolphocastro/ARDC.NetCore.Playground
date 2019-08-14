@@ -1,12 +1,12 @@
 ﻿using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
-using ARDC.NetCore.Playground.Persistance.Mock.Generators;
+using ARDC.NetCore.Playground.Persistence.Mock.Generators;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ARDC.NetCore.Playground.Persistance.Mock.Repositories
+namespace ARDC.NetCore.Playground.Persistence.Mock.Repositories
 {
     public class ReviewRepository : IReviewRepository
     {

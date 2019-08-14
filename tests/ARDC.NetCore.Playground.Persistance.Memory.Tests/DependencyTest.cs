@@ -1,13 +1,13 @@
 using ARDC.NetCore.Playground.Domain;
 using ARDC.NetCore.Playground.Domain.Repositories;
-using ARDC.NetCore.Playground.Persistance.Memory.Repositories;
+using ARDC.NetCore.Playground.Persistence.Core.Repositories;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Xunit;
 
-namespace ARDC.NetCore.Playground.Persistance.Memory.Tests
+namespace ARDC.NetCore.Playground.Persistence.Core.Tests
 {
     public class DependencyTest : IClassFixture<ServiceProviderFixture>
     {

@@ -4,7 +4,7 @@ using ARDC.NetCore.Playground.API.ViewModels.ReviewViewModels;
 using ARDC.NetCore.Playground.Domain;
 using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
-using ARDC.NetCore.Playground.Persistance.Mock.Generators;
+using ARDC.NetCore.Playground.Persistence.Mock.Generators;
 using AutoMapper;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;

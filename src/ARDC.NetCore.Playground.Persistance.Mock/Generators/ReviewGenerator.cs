@@ -3,7 +3,7 @@ using Bogus;
 using System;
 using System.Collections.Generic;
 
-namespace ARDC.NetCore.Playground.Persistance.Mock.Generators
+namespace ARDC.NetCore.Playground.Persistence.Mock.Generators
 {
     /// <summary>
     /// Mock data generator for Reviews.

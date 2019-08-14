@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ARDC.NetCore.Playground.Persistance.Memory.Repositories
+namespace ARDC.NetCore.Playground.Persistence.Core.Repositories
 {
     public class GameRepository : IGameRepository
     {

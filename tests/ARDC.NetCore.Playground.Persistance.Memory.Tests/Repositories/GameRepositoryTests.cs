@@ -1,7 +1,7 @@
 ﻿using ARDC.NetCore.Playground.Domain;
 using ARDC.NetCore.Playground.Domain.Models;
 using ARDC.NetCore.Playground.Domain.Repositories;
-using ARDC.NetCore.Playground.Persistance.Mock.Generators;
+using ARDC.NetCore.Playground.Persistence.Mock.Generators;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace ARDC.NetCore.Playground.Persistance.Memory.Tests.Repositories
+namespace ARDC.NetCore.Playground.Persistence.Core.Tests.Repositories
 {
     public class GameRepositoryTests : IClassFixture<ServiceProviderFixture>
     {

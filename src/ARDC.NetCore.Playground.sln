@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.Per
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6C78AC9F-F03A-478E-B1AC-5C1E3B2B0E89}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.Persistance.Memory", "ARDC.NetCore.Playground.Persistance.Memory\ARDC.NetCore.Playground.Persistance.Memory.csproj", "{6BE002BF-E8AF-4D76-8899-290CE6EA69A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARDC.NetCore.Playground.Persistence.Core", "ARDC.NetCore.Playground.Persistance.Memory\ARDC.NetCore.Playground.Persistence.Core.csproj", "{6BE002BF-E8AF-4D76-8899-290CE6EA69A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistance", "Persistance", "{52260039-7ABA-4734-BF78-618A89FDA455}"
 EndProject

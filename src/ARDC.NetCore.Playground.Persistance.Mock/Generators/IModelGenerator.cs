@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ARDC.NetCore.Playground.Persistance.Mock.Generators
+namespace ARDC.NetCore.Playground.Persistence.Mock.Generators
 {
     /// <summary>
     /// Describe methods to Generate random data.

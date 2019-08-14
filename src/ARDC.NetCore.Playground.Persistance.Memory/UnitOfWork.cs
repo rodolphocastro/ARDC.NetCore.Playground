@@ -1,11 +1,11 @@
 ﻿using ARDC.NetCore.Playground.Domain;
 using ARDC.NetCore.Playground.Domain.Repositories;
-using ARDC.NetCore.Playground.Persistance.Memory.Repositories;
+using ARDC.NetCore.Playground.Persistence.Core.Repositories;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ARDC.NetCore.Playground.Persistance.Memory
+namespace ARDC.NetCore.Playground.Persistence.Core
 {
     public class UnitOfWork : IUnitOfWork
     {
