@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -19,6 +19,7 @@
     <ProjectReference Include="..\..\src\ARDC.NetCore.Playground.API.ViewModels\ARDC.NetCore.Playground.API.ViewModels.csproj" />
     <ProjectReference Include="..\..\src\ARDC.NetCore.Playground.API\ARDC.NetCore.Playground.API.csproj" />
     <ProjectReference Include="..\..\src\ARDC.NetCore.Playground.Domain\ARDC.NetCore.Playground.Domain.csproj" />
+    <ProjectReference Include="..\..\src\ARDC.NetCore.Playground.Persistence.Core\ARDC.NetCore.Playground.Persistence.Core.csproj" />
   </ItemGroup>
 
 </Project>

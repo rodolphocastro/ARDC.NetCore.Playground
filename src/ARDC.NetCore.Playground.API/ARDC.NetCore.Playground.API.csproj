@@ -29,8 +29,8 @@
   <ItemGroup>
     <ProjectReference Include="..\ARDC.NetCore.Playground.API.ViewModels\ARDC.NetCore.Playground.API.ViewModels.csproj" />
     <ProjectReference Include="..\ARDC.NetCore.Playground.Domain\ARDC.NetCore.Playground.Domain.csproj" />
-    <ProjectReference Include="..\ARDC.NetCore.Playground.Persistance.Memory\ARDC.NetCore.Playground.Persistence.Core.csproj" />
     <ProjectReference Include="..\ARDC.NetCore.Playground.Persistance.Mock\ARDC.NetCore.Playground.Persistance.Mock.csproj" />
+    <ProjectReference Include="..\ARDC.NetCore.Playground.Persistence.Core\ARDC.NetCore.Playground.Persistence.Core.csproj" />
   </ItemGroup>
 
 </Project>
